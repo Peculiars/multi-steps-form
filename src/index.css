@@ -1,0 +1,190 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+*{
+  @apply m-0 p-0;
+}
+
+body{
+  @apply bg-[#BFE2fD] font-ubuntu;
+}
+
+.multi-steps-container{
+  @apply relative flex justify-center items-center w-auto h-[100vh];
+}
+
+.background-container{
+  @apply bg-[#FFFFFF] flex items-center xl:w-auto xl:h-[65vh] lg:w-auto lg:h-[75vh] md:w-auto md:h-[65vh] sm:w-[90vw] sm:min-h-[65vh] sm:absolute sm:top-[7em] rounded-[10px] shadow-md;
+}
+
+.desktop-sidebar{
+  @apply relative;
+}
+
+.desktop-img{
+  @apply sm:hidden w-auto h-[25rem] ml-[1rem];
+}
+
+.mobile-img{
+  @apply xl:hidden lg:hidden md:hidden sm:block absolute top-0 w-full;
+}
+
+.mobile-step-count{
+  @apply absolute top-[2.5rem] flex gap-x-3;
+}
+
+.steps-container{
+@apply w-[340px] h-[374px] mx-[3rem] sm:mx-[2.5rem]; 
+}
+
+.steps-heading h1{
+  @apply text-[1.5rem] text-[#02295a] sm:text-[1.8rem] sm:mt-[0.8rem];
+  font-weight: 700;
+}
+
+.steps-heading p{
+  @apply text-[0.75rem] sm:text-[0.95rem] text-[#9699AB] font-medium;
+}
+
+.form-inputs{
+  @apply mt-[1rem];
+}
+.inputs{
+  @apply mb-[1rem] sm:mb-[1.1rem];  
+}
+
+.inputs label{
+  @apply block text-[0.65rem] sm:text-[0.9rem] font-medium text-[#02295a];
+}
+
+.required{
+  @apply text-[0.65rem] text-[#ED3548] font-medium;
+}
+
+.inputs input{
+  @apply border-[1.3px] border-[#9699ab] rounded-[5px] w-full pl-[0.5rem]  py-[0.3rem] sm:py-[0.5rem];
+}
+
+inputs .error{
+  @apply border-[#000] border-[1.3px] w-full;
+}
+.inputs input::placeholder{
+  @apply text-[0.75rem] font-medium;
+}
+
+.step1-btn{
+  @apply flex justify-end;
+}
+.next-step{
+  @apply flex mt-[5rem] sm:mt-0 justify-end bg-[#02295a] text-[#fff] py-[0.3rem] sm:py-[0.8rem] px-[0.8rem] sm:px-[1rem] rounded-[0.3rem] text-[0.85rem];
+}
+
+.plans-container{
+  @apply grid grid-cols-3 sm:grid-cols-1 sm:gap-y-3 gap-x-3 mt-[2rem];
+}
+
+.plans{
+  @apply flex flex-col sm:flex-row border-[1.3px] border-[#9699ab] rounded-[5px] p-[0.7rem] w-[7rem] sm:w-full cursor-pointer hover:border-[#02295a];
+}
+
+.plans img{
+  @apply w-[1.85rem] sm:w-[3rem] mb-[1.5rem] sm:mb-[0rem] sm:mr-[1rem];
+}
+
+.active-card{
+  @apply border-[#02295a] bg-[#fafbff];
+}
+
+.plans .plan-name{
+  @apply text-[#02295a] text-[0.85rem] sm:text-[1.2rem] font-bold;
+}
+
+.price-toggle{
+  @apply text-[0.65rem] sm:text-[0.85rem] text-[#9699ab];
+}
+
+.free-discount{
+  @apply text-[0.6rem] text-[#02295a] font-medium;
+}
+
+.plans .plan-price{
+  @apply text-[0.7rem];
+}
+
+.toggle-button-container{
+  @apply w-[2.5rem] h-[1.2rem] bg-[#02295a] rounded-[10px] flex items-center cursor-pointer p-[2px] mx-[1rem];
+}
+
+.toggle-button{
+  @apply w-[0.85rem] h-[0.85rem] bg-[#FFF] rounded-[50%];
+}
+
+.toggle-option{
+  @apply flex justify-center items-center bg-[#fafbff] mt-[1rem] w-full h-[2rem] rounded-[0.5rem] text-[0.7rem] font-bold text-[#9699ab]; 
+}
+
+.active-plan{
+  @apply text-[#02295a] font-bold;
+}
+
+.go-back-btn{
+  @apply text-[#9699ab] text-[0.85rem] sm:text-[1rem] font-bold;
+}
+
+.step-tracking{
+  @apply absolute top-0 left-[2.5rem] sm:hidden;
+}
+
+.step-counter-container{
+  @apply flex items-center mt-[1rem];
+}
+
+.step-counter-num, .active-step-num, .mobile-counter-num, .active-mobile-num{
+  @apply text-[0.7rem] sm:text-[1.3rem] text-[#FFF] font-bold border-[1px] sm:border-[2px] rounded-[50%] py-[0.2rem] px-[0.5rem] sm:px-[0.85rem] mr-[0.8rem];
+}
+
+.active-step-num, .active-mobile-num{
+  @apply bg-[#bfe2fd] text-[#02295a] border-none;
+}
+
+.mobile-counter-num, .active-mobile-num{
+  @apply xl:hidden lg:hidden md:hidden;
+}
+
+.step-number{
+  @apply text-[0.6rem] text-[#adbeff];
+}
+
+.step-option{
+  @apply text-[0.7rem] text-[#FFF] font-bold;
+}
+
+.options{
+  @apply mt-[1.5rem];
+}
+
+.add-ons-container{
+  @apply flex items-center justify-between  border-[1px] rounded-[5px] p-[0.5rem] mb-[1rem];
+}
+
+.option-title{
+  @apply text-[0.7rem] text-[#02295a] font-bold;
+}
+
+.option-desc{
+  @apply text-[0.7rem] text-[#9699ab];
+}
+
+.option-price{
+  @apply text-[0.65rem] text-[#473dff] font-bold;
+}
+
+
+.mobile-btns{
+  @apply xl:hidden lg:hidden md:hidden sm:block fixed bottom-0 bg-[#fff] w-full h-[5rem];
+}
+
+.btns{
+  @apply py-[1rem] px-[1.5rem];
+}
