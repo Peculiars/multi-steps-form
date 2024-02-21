@@ -6,8 +6,14 @@ import { Step4 } from './Step4';
 import desktopImg from '../assets/bg-sidebar-desktop.svg';
 import mobileImg from '../assets/bg-sidebar-mobile.svg';
 
-export const MultiSteps = ({formValid}) => {
+export const MultiSteps = () => {
   const [step, setStep] = useState(1);
+  const [toggleState, setToggleState] = useState(false);
+  const [userSelections, setUserSelections] = useState({
+    selectedPlan: {},
+    selectedAddOns: [],
+    summary: {}
+  })
 
   const nextStep =()=>{
     setStep(step + 1);
@@ -16,6 +22,31 @@ export const MultiSteps = ({formValid}) => {
   const prevStep=()=>{
     setStep(step -1);
   }
+
+  const handleSelectedPlan = (data) => {
+    setUserSelections({
+      ...userSelections,
+      selectedPlan: data
+    });
+  };
+
+  const handleSelectedAddOns = (data) => {
+    setUserSelections({
+      ...userSelections,
+      selectedAddOns: data
+    });
+  };
+
+  const handleSummary = (data) => {
+    setUserSelections({
+      ...userSelections,
+      summary: data
+    });
+  };
+
+  const handleToggle = (toggle) => {
+    setToggleState(toggle);
+  };
 
   const handleHeading=()=>{
     switch(step){
@@ -51,9 +82,9 @@ export const MultiSteps = ({formValid}) => {
       case 1:
         return <Step1 onNext={nextStep}/>;
       case 2:
-        return <Step2 onNext={nextStep} onBack={prevStep}/>;
+        return <Step2 onNext={nextStep} onBack={prevStep} toggleState={toggleState} handleToggle={handleToggle} onSelectedPlansSubmit={handleSelectedPlan}/>;
       case 3:
-        return <Step3 onNext={nextStep} onBack={prevStep}/>;
+        return <Step3 onNext={nextStep} onBack={prevStep} toggleState={toggleState} handleToggle={handleToggle} onSelectedAddOnsSubmit={handleSelectedAddOns}/>;
       case 4:
         return <Step4 onNext={nextStep} onBack={prevStep}/>
 

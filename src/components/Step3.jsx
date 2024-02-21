@@ -1,38 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react';
+import checkmark from '../assets/icon-checkmark.svg';
 
-export const Step3 = () => {
-  return (     
-    <div className='step3'>
-        <div className='step3-heading'>
-            <div className='options'>
-            <div className='add-ons-container'>
-                <input className='accent-blue-500' type="checkbox" />
-                <div className='add-ons-options ml-[1rem]'>
-                    <p className='option-title'>Online service</p>
-                    <p className='option-desc'>Access to multiplayer games</p>
-                </div>
-                <span className='option-price ml-[6rem]'>+$1/mo</span>
-            </div>
+export const Step3 = ({ toggleState }) => {
+  const [checkedItems, setCheckedItems] = useState(new Array(3).fill(false));
 
-            <div className='add-ons-container'>
-                <input className='accent-blue-500' type="checkbox" />
-                    <div className='add-ons-options ml-[-1rem]'>
-                    <p className='option-title'>Larger storage</p>
-                    <p className='option-desc'>Extra 1TB of cloud save </p>
-                    </div>
-                    <span className='option-price ml-[6rem]'>+$2/mo</span>
-            </div>
+  const toggleCheckbox = (index) => {
+    const newCheckedItems = [...checkedItems];
+    newCheckedItems[index] = !newCheckedItems[index];
+    setCheckedItems(newCheckedItems);
+  };
 
-            <div className='add-ons-container'>
-                <input className='accent-blue-500' type="checkbox" />
-                <div className='add-ons-options ml-[1rem]'>
-                    <p className='option-title'>Customizable profile</p>
-                    <p className='option-desc'>Custom theme on your profile</p>
-                </div>
-                <span className='option-price ml-[6rem]'>+$2/mo</span>
+  const optionItems = [
+    { optionTitle: 'Online service', optionDesc: 'Access to multiplayer games', optionPrice: toggleState ? '+$10/yr' : '+$1/mo' },
+    { optionTitle: 'Larger storage', optionDesc: 'Extra 1TB of cloud save', optionPrice: toggleState ? '+$20/yr' : '+$2/mo' },
+    { optionTitle: 'Customizable profile', optionDesc: 'Custom theme on your profile', optionPrice: toggleState ? '+$20/yr' : '+$2/mo' },
+  ];
+
+  return (
+    <div className='options'>
+      {optionItems.map((item, index) => (
+        <div className={checkedItems[index] ? 'selected-option' : 'add-ons-container'} key={index} onClick={() => toggleCheckbox(index)}>
+          <div className='flex items-center justify-center'>
+            <div className={checkedItems[index] ? 'is-checked check-container' : 'check-container'}>
+              {checkedItems[index] && (
+                <img className='w-[0.5rem] h-[0.5rem]' src={checkmark} alt='' />
+              )}
             </div>
+            <div className='add-ons-options ml-[1rem]'>
+              <p className='option-title'>{item.optionTitle}</p>
+              <p className='option-desc'>{item.optionDesc}</p>
             </div>
+          </div>
+          <span className='option-price'>{item.optionPrice}</span>
         </div>
+      ))}
     </div>
-  )
-}
+  );
+};

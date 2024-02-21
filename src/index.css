@@ -164,8 +164,20 @@ inputs .error{
   @apply mt-[1.5rem];
 }
 
-.add-ons-container{
-  @apply flex items-center justify-between  border-[1px] rounded-[5px] p-[0.5rem] mb-[1rem];
+.add-ons-container, .selected-option{
+  @apply flex items-center justify-between border-[1px] rounded-[5px] p-[0.5rem] mb-[1rem] cursor-pointer;
+}
+
+.check-container{
+  @apply w-[0.7rem] h-[0.7rem] cursor-pointer relative border-[#000] border-[1px] flex justify-center items-center rounded-[0.15rem];
+}
+
+.selected-option{
+  @apply bg-[#fafbff] border-[#02295a] border-[1px];
+}
+
+.is-checked{
+  @apply bg-blue-600 w-[0.7rem] h-[0.7rem] flex justify-center items-center rounded-[0.15rem]; 
 }
 
 .option-title{
@@ -178,6 +190,7 @@ inputs .error{
 
 .option-price{
   @apply text-[0.65rem] text-[#473dff] font-bold;
+  float: right;
 }
 
 
