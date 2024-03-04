@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import checkmark from '../assets/icon-checkmark.svg';
 
-export const Step3 = ({ toggleState }) => {
+export const Step3 = ({ toggleState, onBack, onNext}) => {
   const [checkedItems, setCheckedItems] = useState(new Array(3).fill(false));
 
   const toggleCheckbox = (index) => {
@@ -34,6 +34,16 @@ export const Step3 = ({ toggleState }) => {
           <span className='option-price'>{item.optionPrice}</span>
         </div>
       ))}
+      <div className='buttons justify-between flex items-end sm:hidden'>
+        <button type='button' onClick={onBack} className='go-back-btn'>Go Back</button>
+        <button onClick={onNext} className='next-step'>Next Step</button>
+      </div>
+      <div className='mobile-btns'>
+        <div className='btns justify-between flex items-center '>
+          <button onClick={onBack} className='go-back-btn'>Go Back</button>
+          <button onClick={onNext} className='next-step'>Next Step</button>
+        </div>
+      </div>
     </div>
   );
 };

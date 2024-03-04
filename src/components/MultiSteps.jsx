@@ -9,6 +9,7 @@ import mobileImg from '../assets/bg-sidebar-mobile.svg';
 export const MultiSteps = () => {
   const [step, setStep] = useState(1);
   const [toggleState, setToggleState] = useState(false);
+  const [formValid, setFormValid] = useState(false);
   const [userSelections, setUserSelections] = useState({
     selectedPlan: {},
     selectedAddOns: [],
@@ -37,12 +38,6 @@ export const MultiSteps = () => {
     });
   };
 
-  const handleSummary = (data) => {
-    setUserSelections({
-      ...userSelections,
-      summary: data
-    });
-  };
 
   const handleToggle = (toggle) => {
     setToggleState(toggle);
@@ -80,7 +75,7 @@ export const MultiSteps = () => {
   const renderStep =()=>{
     switch(step){
       case 1:
-        return <Step1 onNext={nextStep}/>;
+        return <Step1 onNext={nextStep} setFormValid={setFormValid}/>;
       case 2:
         return <Step2 onNext={nextStep} onBack={prevStep} toggleState={toggleState} handleToggle={handleToggle} onSelectedPlansSubmit={handleSelectedPlan}/>;
       case 3:
@@ -92,52 +87,6 @@ export const MultiSteps = () => {
         return null;
     }
   }
-
-  const renderButtons = () => {
-    if (step === 1) {
-      return (
-        <div className='buttons justify-end flex items-end sm:hidden'>
-          <button onClick={nextStep}   className='next-step'>
-            Next Step
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div className='buttons justify-between flex items-end sm:hidden'>
-          <button onClick={prevStep} className='go-back-btn'>
-            Go Back
-          </button>
-          <button onClick={nextStep} className='next-step'>
-            Next Step
-          </button>
-        </div>
-      );
-    }
-  };
-
-  const renderMobileButtons = () => {
-    if (step === 1) {
-      return (
-        <div className='btns justify-end flex items-end'>
-          <button onClick={nextStep} className='next-step'>
-            Next Step
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div className='btns justify-between flex items-center '>
-          <button onClick={prevStep} className='go-back-btn'>
-            Go Back
-          </button>
-          <button onClick={nextStep} className='next-step'>
-            Next Step
-          </button>
-        </div>
-      );
-    }
-  };
   
   return (
     <div className='multi-steps-container'>
@@ -194,12 +143,10 @@ export const MultiSteps = () => {
               <div>
                 {renderStep()}
               </div>
-                  {renderButtons()}
+                
             </div>
         </div>
-        <div className='mobile-btns'>
-          {renderMobileButtons()}
-        </div>
+        
     </div>
   )
 }

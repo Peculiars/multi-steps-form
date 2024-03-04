@@ -1,32 +1,6 @@
-// import React from 'react'
+import React, { useState } from 'react';
 
-// export const Step1 = () => {
-
-//   return (
-//     <form className='step1'>
-//             <div className='form-inputs'>
-//                 <div className='inputs'>
-//                     <label htmlFor="username">Name
-//                     <input type="text" id='username' name='username'  placeholder='e.g. Stephen King'/>
-//                     </label>
-//                 </div>
-                
-//                 <div className='inputs'>
-//                     <label htmlFor="email"> Email Address</label>
-//                     <input type="email" id='email' placeholder='e.g. Stephenking@lorem.com'/>
-//                 </div>
-
-//                 <div className='inputs'>
-//                     <label htmlFor="tel"> Phone Number</label>
-//                         <input type="tel" id='tel' placeholder='e.g. +1 234 567 890'/>
-//                 </div>
-//             </div>
-//         </form>
-//   )
-// }
-import React, { useEffect, useState } from 'react';
-
-export const Step1 = () => {
+export const Step1 = ({ onNext }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [tel, setTel] = useState('');
@@ -36,15 +10,9 @@ export const Step1 = () => {
     tel: false
   });
 
-
-  const [formValid, setFormValid]=useState(false);
-
-  useEffect(()=>{
-    setFormValid(username.trim() !== '' && email.trim() !== '' && tel.trim() !== '')
-  }, [username, email, tel])
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // Update input values
     if (name === 'username') setUsername(value);
     else if (name === 'email') setEmail(value);
     else if (name === 'tel') setTel(value);
@@ -64,16 +32,19 @@ export const Step1 = () => {
     return errors[name];
   };
 
+  // Calculate form validity
+  const formValid = username.trim() !== '' && email.trim() !== '' && tel.trim() !== '';
+
   return (
-    <form className='step1'>
+    <div className='step1'>
       <div className='form-inputs'>
         <div className='inputs'>
-            <div className='flex justify-between'>
-                <label htmlFor="username">Name</label>
-                {isFieldRequired('username') && <p className="required">This field is required</p>}
-            </div>
+          <div className='flex justify-between'>
+            <label htmlFor='username'>Name</label>
+            {isFieldRequired('username') && <p className='required'>This field is required</p>}
+          </div>
           <input
-            type="text"
+            type='text'
             id='username'
             name='username'
             placeholder='e.g. Stephen King'
@@ -85,12 +56,12 @@ export const Step1 = () => {
         </div>
 
         <div className='inputs'>
-            <div className='flex justify-between'>
-                <label htmlFor="email">Email Address</label>
-                {isFieldRequired('email') && <p className="required">This field is required</p>}
-            </div>
+          <div className='flex justify-between'>
+            <label htmlFor='email'>Email Address</label>
+            {isFieldRequired('email') && <p className='required'>This field is required</p>}
+          </div>
           <input
-            type="email"
+            type='email'
             id='email'
             name='email'
             placeholder='e.g. Stephenking@lorem.com'
@@ -102,22 +73,36 @@ export const Step1 = () => {
         </div>
 
         <div className='inputs'>
-            <div className='flex justify-between'>
-                <label htmlFor="tel">Phone Number</label>
-                {isFieldRequired('tel') && <p className="required">This field is required</p>}
-            </div>
+          <div className='flex justify-between'>
+            <label htmlFor='tel'>Phone Number</label>
+            {isFieldRequired('tel') && <p className='required'>This field is required</p>}
+          </div>
           <input
-            type="tel"
+            type='tel'
             id='tel'
             name='tel'
             placeholder='e.g. +1 234 567 890'
             value={tel}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
-            className={errors.tel ? 'error' : ''}
+            className={errors.tel ? 'error border-red-500 border-[1.5px]f' : ''}
           />
         </div>
       </div>
-    </form>
+      <div className='justify-end flex items-end sm:hidden'>
+        {/* Disabled attribute and class name set based on formValid */}
+        <button type='button' onClick={onNext} disabled={!formValid} className={!formValid ? 'not-valid' : 'next-step'}>
+          Next Step
+        </button>
+      </div>
+      <div className='mobile-btns'>
+        <div className='btns justify-end flex items-end'>
+          {/* Same here, disabled and class name set based on formValid */}
+          <button onClick={onNext} disabled={!formValid} className={!formValid ? 'not-valid' : 'next-step'}>
+            Next Step
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };

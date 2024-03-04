@@ -66,8 +66,8 @@ body{
   @apply border-[1.3px] border-[#9699ab] rounded-[5px] w-full pl-[0.5rem]  py-[0.3rem] sm:py-[0.5rem];
 }
 
-inputs .error{
-  @apply border-[#000] border-[1.3px] w-full;
+.inputs input .error{
+  @apply border-red-500 border-[1.3px] w-full;
 }
 .inputs input::placeholder{
   @apply text-[0.75rem] font-medium;
@@ -76,8 +76,12 @@ inputs .error{
 .step1-btn{
   @apply flex justify-end;
 }
-.next-step{
+.next-step, .not-valid{
   @apply flex mt-[5rem] sm:mt-0 justify-end bg-[#02295a] text-[#fff] py-[0.3rem] sm:py-[0.8rem] px-[0.8rem] sm:px-[1rem] rounded-[0.3rem] text-[0.85rem];
+}
+
+.not-valid{
+  @apply opacity-75;
 }
 
 .plans-container{
@@ -189,13 +193,13 @@ inputs .error{
 }
 
 .option-price{
-  @apply text-[0.65rem] text-[#473dff] font-bold;
+  @apply text-[0.60rem] text-[#473dff] font-medium;
   float: right;
 }
 
 
 .mobile-btns{
-  @apply xl:hidden lg:hidden md:hidden sm:block fixed bottom-0 bg-[#fff] w-full h-[5rem];
+  @apply xl:hidden lg:hidden md:hidden sm:block fixed bottom-0 bg-[#fff] w-full h-[5rem] left-0;
 }
 
 .btns{
